@@ -1,0 +1,136 @@
+// If you edit this file you need to compile the theme. See README.md for details.
+
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+//$v-font-size: 16px;
+//$v-font-weight: 300;
+//$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+//$v-border: 1px solid (v-shade 0.7);
+//$v-border-radius: 4px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(210, 0%, 98%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: $v-background-color;
+
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+//$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+
+@import "../valo/valo.scss";
+
+@mixin BloodBankDefault {
+  @include valo;
+
+  // Insert your own theme rules here
+
+.v-nativebutton-borderless {
+    border: none;
+    background-color:red;
+    background: transparent url(http://dev.vaadin.com/chrome/site/vaadin-trac.png) no-repeat;
+}
+
+.headerH{
+
+	padding-right: 2.5%;
+}
+.timeLabel{
+padding-right:4%;
+}
+.loginH{
+padding-right:4%;
+padding-left:5%;
+background: transparent no-repeat;
+border:none;
+
+}
+
+.openMenu{
+	margin-left: 20px;;
+	border: none;
+	background: transparent no-repeat;
+}
+.center, .mainTitle{
+	text-align:center;
+}
+
+
+.userIcon .v-icon{
+width:18px;
+height:18px;
+}
+
+.bloodSum .v-icon{
+width:24px;
+height:24px;
+
+}
+
+.clearDisabled.v-button.v-disabled{
+	opacity: 1;
+	filter: alpha(opacity=1.0);	
+}
+
+.myInfoMargin{
+padding-left: 5px;
+}
+
+.myBloodInfoMargin1{
+padding-right:3%;
+}
+
+.inacctiveButton{
+opacity: 0.5;
+	filter: alpha(opacity=0.5);	
+}
+
+.red .v-icon{
+	color:red;
+}
+.green .v-icon{
+    color: green;
+}
+
+.yellow1 .v-icon{
+
+	color:yellow;
+}
+.yellow2 .v-icon{
+
+	color:yellowgreen;
+}
+.yellow3 .v-icon{
+
+	color:greenyellow;
+}
+.yellow4 .v-icon{
+
+	color:green;
+}
+
+.background1{
+	
+	background: lightgray;
+
+}
+
+
+
+
+
+
+
+
+}

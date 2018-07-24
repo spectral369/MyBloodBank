@@ -1,0 +1,13 @@
+@import "BloodBankDefault.scss";
+@import "addons.scss";
+@import "designs.scss";
+
+// This file prefixes all rules with the theme name to avoid causing conflicts with other themes.
+// The actual styles should be defined in BloodBankDefault.scss
+
+.BloodBankDefault {
+  @include vaadin-tiles-template;
+  @include addons;
+  @include BloodBankDefault;
+
+}
