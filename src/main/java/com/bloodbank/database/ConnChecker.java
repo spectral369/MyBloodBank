@@ -7,11 +7,13 @@ import java.util.Locale;
 import com.bloodbank.MyBloodBank.MyUI;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.server.Page;
+import com.vaadin.ui.UI;
 
 @PreserveOnRefresh
 public class ConnChecker extends Thread {
 
-	private MyUI ui;
+	private UI ui;
+	private MyUI myui;
 	private BloodBankDatabase db;
 
 	private static ConnChecker myConn = null;
@@ -33,7 +35,7 @@ public class ConnChecker extends Thread {
 	private /* static */boolean wasFailed = false;
 
 	public ConnChecker(MyUI ui, BloodBankDatabase db/* , BloodBankHeader header */) {
-		this.ui = ui;
+		this.ui = UI.getCurrent();
 		this.db = db;
 		// this.header=header;
 		this.setDaemon(true);/// check daemon 'cuz destroy context in tomcat is called after restart
@@ -47,7 +49,10 @@ public class ConnChecker extends Thread {
 	@Override
 	public void run() {
 		try {
-			ui.access(new Runnable() {
+		/*	UI.setCurrent(ui);
+			if(ui == null)
+				throw new IllegalStateException("erroooor");*/
+			ui.getUI().access(new Runnable() {
 
 				@Override
 				public void run() {
@@ -73,12 +78,12 @@ public class ConnChecker extends Thread {
 							System.out.println("reload here !!!!");
 							Page.getCurrent().reload();
 						} else {
-							ui.header.circleStatus.removeStyleName("green");
-							ui.header.circleStatus.addStyleName("red");
-							ui.header.circleStatus.setDescription("No db connection!");
-							ui.getNavigator().navigateTo("/Home");
-							if (ui.getCP() != null)//
-								ui.getMenuContainer().setEnabled(false);
+							myui.header.circleStatus.removeStyleName("green");
+							myui.header.circleStatus.addStyleName("red");
+							myui.header.circleStatus.setDescription("No db connection!");
+							myui.getNavigator().navigateTo("/Home");
+							if (myui.getCP() != null)//
+								myui.getMenuContainer().setEnabled(false);
 						}
 					} else if (wasFailed) {
 						int code = db.dbInit();

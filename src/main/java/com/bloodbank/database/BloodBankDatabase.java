@@ -294,7 +294,7 @@ public class BloodBankDatabase implements AutoCloseable, Serializable {
 	}
 
 	public String getEmail(String id) {
-		String query = "Select coalesce(email,'not set') from myinfo where id= ?;";
+		String query = "Select email from myinfo where id= ?;";
 		Connection conn = null;
 		String re = "";
 		ResultSet result = null;

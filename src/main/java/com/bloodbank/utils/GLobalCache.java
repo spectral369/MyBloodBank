@@ -31,7 +31,10 @@ public class GLobalCache {
 	
 	public static FileResource getUserIcon(String key) {
 		try {
+		if(cacheUserIcons.get(key).getSourceFile().exists())
 			return cacheUserIcons.get(key);
+		else 
+			return Utils.getUserImage("default");
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			return null;

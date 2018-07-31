@@ -19,6 +19,7 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
@@ -72,14 +73,17 @@ public class MyInfo extends Composite implements View {
 	private HorizontalLayout medicalUnitTitle = null;
 	private Label medicalUnitLabel = null;
 	private Button updateInfo;
+	private Panel content1;
 
 	public MyInfo(BloodBankDatabase db) {
+		
 		page = new VerticalLayout();
 		title = new HorizontalLayout();
 		def = new Label("My Information");
 		def.setEnabled(false);
-		// test
-				// test
+		content1  =new Panel();
+		content1.setSizeFull();
+		
 		title.addComponent(def);
 		title.setComponentAlignment(def, Alignment.TOP_CENTER);
 		page.addComponent(title);
@@ -264,11 +268,16 @@ public class MyInfo extends Composite implements View {
 		bloodInfo.setComponentAlignment(nextDonationDateLayout, Alignment.MIDDLE_LEFT);
 		bloodInfo.setMargin(false);
 		bloodInfo.setSpacing(false);
-		bloodInfo.setSizeUndefined();
+		//bloodInfo.setSizeUndefined();
+		//bloodInfo.setSizeFull();
 		// bloodInfo.addStyleName("myBloodInfoMargin1");
+		content1.setContent(bloodInfo);
+		content1.addStyleName(ValoTheme.PANEL_WELL);
 
-		page.addComponent(bloodInfo);
-		page.setComponentAlignment(bloodInfo, Alignment.MIDDLE_LEFT);
+	/*	page.addComponent(bloodInfo);
+		page.setComponentAlignment(bloodInfo, Alignment.MIDDLE_LEFT);*/
+		page.addComponent(content1);
+		page.setComponentAlignment(content1, Alignment.MIDDLE_LEFT);
 
 		//
 		medicalUnitTitle = new HorizontalLayout();

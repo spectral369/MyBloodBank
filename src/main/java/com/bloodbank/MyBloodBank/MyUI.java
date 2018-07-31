@@ -27,6 +27,7 @@ import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.PushStateNavigation;
 import com.vaadin.server.Page;
 import com.vaadin.server.SessionDestroyEvent;
 import com.vaadin.server.SessionDestroyListener;
@@ -50,7 +51,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * intended to be overridden to add component to the user interface and
  * initialize non-component functionality.
  */
-//@PushStateNavigation
+@PushStateNavigation
 @Push(transport = Transport.WEBSOCKET_XHR)
 @Theme("BloodBankDefault")
 public class MyUI extends UI implements Serializable {
@@ -217,8 +218,8 @@ public class MyUI extends UI implements Serializable {
 	}
 
 	public MyUI() {
-		//Utils.setBasePath(VaadinService.getCurrent().getBaseDirectory().getAbsolutePath()+"//WEB-INF//classes");
-		Utils.setBasePath("/home/spectral369/workspace_WEB/MyBloodBank/src/main/resources");
+		Utils.setBasePath(VaadinService.getCurrent().getBaseDirectory().getAbsolutePath()+"//WEB-INF//classes");
+		//Utils.setBasePath("/home/spectral369/workspace_WEB/MyBloodBank/src/main/resources");
 		if (Utils.isSetupFilePresent())
 			mysql = BloodBankDatabase.getInstance();
 		/*

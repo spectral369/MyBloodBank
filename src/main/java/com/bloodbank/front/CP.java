@@ -10,6 +10,7 @@ import com.bloodbank.windows.ChangePassword;
 import com.bloodbank.windows.ChangeProfileIcon;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
+import com.vaadin.server.FileResource;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
@@ -56,11 +57,15 @@ public class CP extends Composite implements View {
 		iconLayout = new HorizontalLayout();
 		// Utils.getUserImage(Utils.nullToEmptyString(VaadinSession.getCurrent().getAttribute(AttNames.USERID.getAtt())))
 		String uid = Utils.nullToEmptyString(VaadinSession.getCurrent().getAttribute(AttNames.USERID.getAtt()));
-		icon = new Image(null, GLobalCache.getUserIcon(uid));
-
+		
+		FileResource defaultIcon = GLobalCache.getUserIcon(uid);
+		
+		
+		icon = new Image(null, defaultIcon);
+		icon.markAsDirty();
 		icon.setWidth(Page.getCurrent().getBrowserWindowWidth() / 10, Unit.PIXELS);// test
 		icon.addStyleNames(ValoTheme.BUTTON_BORDERLESS);
-		icon.markAsDirty();
+		
 
 		iconLayout.addComponents(icon);
 		iconLayout.setComponentAlignment(icon, Alignment.MIDDLE_CENTER);
@@ -92,6 +97,7 @@ public class CP extends Composite implements View {
 		changeEmailLayout = new HorizontalLayout();
 		Button changeEmail = new Button("Change Email", VaadinIcons.MAILBOX);
 		changeEmail.addStyleName(ValoTheme.BUTTON_ICON_ALIGN_RIGHT);
+		changeEmail.setEnabled(Integer.parseInt(VaadinSession.getCurrent().getAttribute(AttNames.ISQUPDATED.getAtt()).toString())>0);
 		changeEmail.setSizeFull();
 		changeEmail.addClickListener(event -> {
 			Window winE = new ChangeEmail(db);
